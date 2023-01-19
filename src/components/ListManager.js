@@ -1,11 +1,11 @@
 
 
-export const ListManager = (props) => {
+export const ListManager = ({ setFromPosition }) => {
     const  changeHandler = (event) => {
         if(event.target.value === "Top"){
-            props.setFromPosition("Top")
+            setFromPosition("Top")
         } else if(event.target.value === "Bottom"){
-            props.setFromPosition("Bottom")
+            setFromPosition("Bottom")
         }
     }
 
