@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
+import { ListManager } from './ListManager';
 
 export const TodoEditor = () => {
     const [todoList, setTodoList] = useState([]);
     const [todoItem, setTodoItem] = useState('');
+    const [fromPosition, setFromPosition] = useState('Top');
 
     const addItem = (event) => {
-        event.preventDefault();
-        setTodoList(prev => [todoItem, ...prev])
-        setTodoItem('')
+        event.preventDefault(); //prevents submission from restarting page
+        if(todoItem) { //wont submit with no text in input field
+            if(fromPosition === "Top"){
+                setTodoList(prev => [todoItem, ...prev])
+                setTodoItem('')
+            } else if (fromPosition === "Bottom"){
+                setTodoList(prev => [...prev, todoItem])
+                setTodoItem('')
+            }
+        }
     }
 
     const deleteItem = (itemIndex) => {
@@ -16,9 +25,11 @@ export const TodoEditor = () => {
         })
     }
 
+    //CONTAINS GREAT EXAMPLE OF LIFTING STATE UP!!!
     return (
-        <div>
+        <div> 
             <h1>Todo List</h1>
+            <ListManager setFromPosition={setFromPosition}/> 
             <form type="submit" onSubmit={(event)=>addItem(event)}>
             <input 
             type="text"
