@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 
 export const ColorPicker = () => {
-    const [color, setColor] = useState('white')
+    const [color, setColor] = useState('White')
     const backColor = {backgroundColor: color};
     const colorNames = ['Red', 'Yellow', 'Green', 'Blue', 'Orange']
     return (
